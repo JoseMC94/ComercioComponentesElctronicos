@@ -1,0 +1,84 @@
+﻿<div class="col-md-9 content_right">
+    <div class="dreamcrub">
+        <ul class="breadcrumbs">
+            <li class="home">
+                <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                <span>&gt;</span>
+            </li>
+            <li class="women">
+                Checkout
+            </li>
+        </ul>
+        <ul class="previous">
+            <li><a href="index.html">Back to Previous Page</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+   
+    <div class="checkout-container">
+        <div class="row">
+            <div class="span10 offset1">
+
+                                
+                <!--  ==========  -->
+                <!--  = Selected Items =  -->
+                <!--  ==========  -->
+                <table class="table table-items">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Item</th>
+                            <th><div class="align-center">Quantity</div></th>
+                            <th><div class="align-right">Price</div></th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemcarrito2"></tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="stronger">Total:</td>
+                        <td class="stronger"><div id="totalCompra" class="size-16 align-right">0.00</div></td>
+                    </tr>
+
+                </table>
+
+                <hr />
+
+                <p class="right-align">
+                    In the next step you will choose your shipping address &nbsp; &nbsp;
+                    <a href="@Url.Action("Paso02","Compra")" class="btn btn-primary higher bold">CONTINUAR</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            var carrito2 = localStorage.getItem("carrito");
+            var productos = [];
+            if (carrito2 != null) {
+                productos = JSON.parse(carrito2);
+                CargarProductos2(productos);
+            }
+        });
+        function CargarProductos2(productos) {
+            var html = '';
+            var total = 0;
+
+            $.each(productos, function () {
+                total += this.Precio * this.Cantidad
+                html += '<tr>' +
+                '            <td class="image"><img src="/ImgProductos/' + this.Imagen + '" alt="" width="70" height="70" /></td>' +
+                '            <td class="desc">' + this.Denominacion + ' &nbsp; <a title="Remove Item" class="icon-remove-sign" href="#"></a></td>' +
+                '            <td class="qty">' +
+                '                <input type="text" class="tiny-size" value="' + this.Cantidad + '" />' +
+                '           </td>' +
+                '           <td class="price">S/. ' + this.Precio + '</td>' +
+                '          </tr>'
+            });
+            $('#itemcarrito2').html(html);
+
+            $("#totalCompra").text('S/.' + total);
+        }
+    </script>
+
+</div>

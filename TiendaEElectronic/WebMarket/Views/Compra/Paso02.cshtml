@@ -1,0 +1,97 @@
+﻿<div class="col-md-9 content_right">
+    <div class="dreamcrub">
+        <ul class="breadcrumbs">
+            <li class="home">
+                <a href="index.html" title="Go to Home Page">Home</a>&nbsp;
+                <span>&gt;</span>
+            </li>
+            <li class="women">
+                Checkout
+            </li>
+        </ul>
+        <ul class="previous">
+            <li><a href="index.html">Back to Previous Page</a></li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="checkout-container">
+        <div class="row">
+            <div class="span10 offset1">
+
+
+                <!--  ==========  -->
+                <!--  = Selected Items =  -->
+                <!--  ==========  -->
+                <table class="table table-items">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Item</th>
+                            <th><div class="align-center">Quantity</div></th>
+                            <th><div class="align-right">Price</div></th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemcarrito3"></tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td class="stronger">Total:</td>
+                        <td class="stronger"><div id="totalCompra" class="size-16 align-right">0.00</div></td>
+                    </tr>
+
+                </table>
+
+                <hr />
+
+                <p class="right-align">
+                    <a id="btnConfirmar" href="@Url.Action("Index","Home")" class="btn btn-primary higher bold">CONFIRMAR &amp; PAGAR</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            var carrito = localStorage.getItem("carrito");
+            var productos = [];
+            if (carrito != null) {
+                productos = JSON.parse(carrito);
+                CargarProductos(productos);
+            }
+
+            $("#btnConfirmar").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    url: '@Url.Action("RealizarPedido","Compra")',
+                    data: carrito,
+                    success: function () {
+                        localStorage.removeItem("carrito");
+                        window.location = '@Url.Action("Index","Home")';
+                    }
+                });
+
+            });
+        });
+        function CargarProductos(productos) {
+            var html = '';
+            var total = 0;
+
+            $.each(productos, function () {
+                total += this.Precio * this.Cantidad
+                html += '<tr>' +
+                '            <td class="image"><img src="/ImgProductos/' + this.Imagen + '" alt="" width="124" height="124" /></td>' +
+                '            <td class="desc">' + this.Denominacion + ' &nbsp; </td>' +
+                '            <td class="qty">' +
+                '                ' + this.Cantidad +
+                '           </td>' +
+                '           <td class="price">S/. ' + this.Precio + '</td>' +
+                '          </tr>'
+            });
+            $('#itemcarrito3').html(html);
+
+            $("#totalCompra").text('S/.' + total);
+        };
+
+    </script>
