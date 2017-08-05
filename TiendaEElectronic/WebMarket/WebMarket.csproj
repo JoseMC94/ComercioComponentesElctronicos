@@ -236,6 +236,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\SessionHelper.cs" />
     <Compile Include="Models\Cliente.cs">
       <DependentUpon>ModelTienda.tt</DependentUpon>
     </Compile>
@@ -301,6 +302,10 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Compra\Paso01.cshtml" />
     <Content Include="Views\Compra\Paso02.cshtml" />
+    <Content Include="Views\Home\LoginVista.cshtml" />
+    <Content Include="Views\Home\RegistrarV.cshtml" />
+    <Content Include="Views\Compra\Paso03.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

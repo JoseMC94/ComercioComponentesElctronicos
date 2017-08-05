@@ -1,0 +1,36 @@
+﻿@model WebMarket.Models.Cliente
+<br />
+<div class="register">
+    <form method="post" action="@Url.Action("RegistrarCliente","Home")">
+        <div class="register-top-grid">
+            <h3>INFORMACION PERSONAL</h3>
+            <div>
+                <span>Nombre<label>*</label></span>
+                <input type="text" name="nombres" value="@Model.Nombres" disabled >
+            </div>
+            <div>
+                <span>Apellidos<label>*</label></span>
+                <input type="text" name="apellidos" value="@Model.Apellidos" disabled>
+            </div>
+            <div>
+                <span>Email <label>*</label></span>
+                <input type="text" name="correo" value="@Model.Correo" disabled>
+            </div>
+            <div>
+                <span>Celular<label>*</label></span>
+                <input type="text" name="celular" value="@Model.Celular" disabled>
+            </div>
+            <div>
+                <span>Dirección<label>*</label></span>
+                <input type="text" name="direccion" value="@Model.Direccion" disabled>
+            </div>
+            <div>
+                <a href="@Url.Action("Paso02","Compra")" class="btn btn-primary higher bold">CONTINUAR</a>
+
+            </div>
+            
+        </div>
+        <div class="clearfix"> </div>
+    </form>
+
+</div>

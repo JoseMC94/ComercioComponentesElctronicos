@@ -103,7 +103,7 @@ background: url(../images/grid_view.png)no-repeat;
 /* Individual view mode styles */
 /* Large grid view */
 .cbp-vm-view-grid ul li {
-	width: 32%;
+	width: 22%;
 	text-align: center;
 	margin: 20px 0 0;
 	display: inline-block;
@@ -140,7 +140,7 @@ background: url(../images/grid_view.png)no-repeat;
 	vertical-align: middle;
 }
 .cbp-vm-view-list .cbp-vm-image {
-	width:30%;
+	width:20%;
 }
 .cbp-vm-view-list .cbp-vm-title {
 	font-size: 1.3em;

@@ -68,6 +68,10 @@
                     data: carrito,
                     success: function () {
                         localStorage.removeItem("carrito");
+                        //window.localStorage.clear();
+                        //localStorage.$reset();
+                        //localStorage.removeItem("carrito");
+                        //localStorage.removeItem("carrito2")
                         window.location = '@Url.Action("Index","Home")';
                     }
                 });

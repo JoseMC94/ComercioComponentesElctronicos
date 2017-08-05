@@ -15,7 +15,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Custom Theme files -->
     <!--webfont-->
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="~/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="~/js/jquery.form.min.js"></script>
@@ -49,7 +48,106 @@ $(document).ready(function (c) {
     </script>
 </head>
 <body>
-    <div class="index-banner">
+    
+    <div class="sales">
+        <div class="container">
+            <div class="header_top">
+                <div class="logo">
+                    <a href="@Url.Action("Index", "Home" )"><img src="~/images/logo.png" alt="" /></a>
+                </div>
+                <div class="header-bottom-right">
+                    <ul class="icon1 sub-icon1 profile_img">
+                        <li>
+                            <a class="active-icon c1" href="#">Mi Carrito </a><div id="nroProductosCarrito" class="rate">0</div>
+                            <ul class="sub-icon1 list">
+                                <h3 id="nroProductosCarrito">Productos recientes (</a><div id="nroProductosCarrito" class="rate">0</div>)</h3>
+                                <h5>
+
+                                    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("RegistrarV", "Home" )" role="button" data-toggle="modal"> Registrar </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#">Hola @WebMarket.Controllers.HomeController.ObtenerNombreUsuario()</a>
+                                        <text> o </text>
+                                        <a href="@Url.Action("Logout", "Home" )"> Cerrar Sesion </a>
+                                    }
+
+
+                                </h5>
+                                <div class="shopping_cart">
+                                    <div id="itemcarrito"></div>
+                                </div>
+                                <div class="total">
+                                    <div class="total_left">Total : </div>
+                                    <div id="totalCompraCarrito" class="total_right">S/. 0.00</div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <div class="login_buttons">
+                                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="check_button"><a href="@Url.Action("Paso01", "Compra")">Pagar</a></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="check_button"><a href="@Url.Action("LoginVista", "Home")">Pagar</a></div>
+                                    }
+                                    <div class="login_button"><a href="@Url.Action("LoginVista", "Home")">Login</a></div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="menu">
+                    <a href="#" class="right_bt" id="activator"><img src="~/images/menu.png" alt="" /></a>
+                    <div class="box" id="box">
+                        <div class="box_content_center">
+                            <div class="menu_box_list">
+                                <ul>
+                                    <li><a href="@Url.Action("Buscar","Home")">New Arrivals</a></li>
+                                    <li class="active"><a href="@Url.Action("Buscar","Home")">Venta</a></li>
+                                    <li><a href="@Url.Action("Buscar","Home")">Coleccion</a></li>
+                                    <li><a href="about.html">Acerca</a></li>
+                                    <li><a href="@Url.Action("Contacto", "Home")">Contacto</a></li>
+                                </ul>
+                            </div>
+                            <a class="boxclose" id="boxclose"><img src="~/images/close.png" alt="" /></a>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        var $ = jQuery.noConflict();
+                        $(function () {
+                            $('#activator').click(function () {
+                                $('#box').animate({ 'left': '0px' }, 500);
+                            });
+                            $('#boxclose').click(function () {
+                                $('#box').animate({ 'left': '-2300px' }, 500);
+                            });
+                        });
+                        $(document).ready(function () {
+
+                            //Hide (Collapse) the toggle containers on load
+                            $(".toggle_container").hide();
+
+                            //Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+                            $(".trigger").click(function () {
+                                $(this).toggleClass("active").next().slideToggle("slow");
+                                return false; //Prevent the browser jump to the link anchor
+                            });
+
+                        });
+                    </script>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+    @*<div class="index-banner">
         <div class="container">
             <div class="header_top">
                 <div class="logo">
@@ -60,7 +158,22 @@ $(document).ready(function (c) {
                         <li>
                             <a class="active-icon c1" href="#">Mi Carrito </a><div id="nroProductosCarrito" class="rate">0</div>
                             <ul class="sub-icon1 list">
-                                <h3 id="nroProductosCarrito">Productos recientes(0)</h3>
+                                <h3 id="nroProductosCarrito">Productos recientes (</a><div id="nroProductosCarrito" class="rate">0</div>)</h3>
+                                <h5>
+
+                                    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("RegistrarV", "Home" )" role="button" data-toggle="modal"> Registrar </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#">Hola @WebMarket.Controllers.HomeController.ObtenerNombreUsuario()</a>
+                                        <text> o </text>
+                                        <a href="@Url.Action("Logout", "Home" )"> Cerrar Sesion </a>
+                                    }
+
+
+                                </h5>
                                 <div class="shopping_cart">
                                     <div id="itemcarrito"></div>
                                 </div>
@@ -70,8 +183,15 @@ $(document).ready(function (c) {
                                     <div class="clearfix"> </div>
                                 </div>
                                 <div class="login_buttons">
-                                    <div class="check_button"><a href="@Url.Action("Paso01", "Compra")">Pagar</a></div>
-                                    <div class="login_button"><a href="login.html">Login</a></div>
+                                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                                    {
+                                        <div class="check_button"><a href="@Url.Action("Paso01", "Compra")">Pagar</a></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="check_button"><a href="@Url.Action("LoginVista", "Home")">Pagar</a></div>
+                                    }
+                                    <div class="login_button"><a href="@Url.Action("LoginVista", "Home")">Login</a></div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="clearfix"></div>
@@ -144,7 +264,7 @@ $(document).ready(function (c) {
         <script>
             $('.example1').wmuSlider();
         </script>
-    </div>
+    </div>*@
 
 
     <div class="container">
@@ -161,55 +281,55 @@ $(document).ready(function (c) {
             </ul>
             <!--initiate accordion-->
             <script type="text/javascript">
-                    $(function () {
-                        var menu1_ul = $('.menu1> li > ul'),
-                               menu1_a = $('.menu1 > li > a');
-                        menu1_ul.hide();
-                        menu1_a.click(function (e) {
-                            e.preventDefault();
-                            if (!$(this).hasClass('active')) {
-                                menu1_a.removeClass('active');
-                                menu1_ul.filter(':visible').slideUp('normal');
-                                $(this).addClass('active').next().stop(true, true).slideDown('normal');
-                            } else {
-                                $(this).removeClass('active');
-                                $(this).next().stop(true, true).slideUp('normal');
-                            }
-                        });
-
+                $(function () {
+                    var menu1_ul = $('.menu1> li > ul'),
+                           menu1_a = $('.menu1 > li > a');
+                    menu1_ul.hide();
+                    menu1_a.click(function (e) {
+                        e.preventDefault();
+                        if (!$(this).hasClass('active')) {
+                            menu1_a.removeClass('active');
+                            menu1_ul.filter(':visible').slideUp('normal');
+                            $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                        } else {
+                            $(this).removeClass('active');
+                            $(this).next().stop(true, true).slideUp('normal');
+                        }
                     });
+
+                });
             </script>
             <div class="box1">
                 <ul class="box1_list">
-                    <li><a href="#">Jeans</a></li>
-                    <li><a href="#">Hoodies</a></li>
-                    <li><a href="#">Watches</a></li>
-                    <li><a href="#">Suits</a></li>
-                    <li><a href="#">Ties</a></li>
-                    <li><a href="#">Shirts</a></li>
-                    <li><a href="#">T-Shirts</a></li>
-                    <li><a href="#">Underwear</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Caps & Hats</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">Arduino</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">ElectroShop</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">Drones</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">Sensores</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">PIC</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">Raspberry</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">Pantallas</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">Circuitos Integrados</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">Baterías</a></li>
+                    <li><a href="@Url.Action("Buscar","Home")">AVR</a></li>
                 </ul>
             </div>
             <ul class="box2_list">
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Sales</a></li>
-                <li><a href="#">Collection '15</a></li>
-                <li><a href="#">Mystery</a></li>
-                <li><a href="#">Story Behind</a></li>
-                <li><a href="#">About US</a></li>
-                <li><a href="#">Contacts</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Nuevos Productos</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">venta</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Colecciones</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Mystery</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Story Behind</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Acerca</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Contactos</a></li>
             </ul>
             <ul class="box3_list">
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Sales</a></li>
-                <li><a href="#">Collection '15</a></li>
-                <li><a href="#">Mystery</a></li>
-                <li><a href="#">Story Behind</a></li>
-                <li><a href="#">About US</a></li>
-                <li><a href="#">Contacts</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">New Arrivals</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Sales</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Collection '15</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Mystery</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">Story Behind</a></li>
+                <li><a href="@Url.Action("Buscar","Home")">About US</a></li>
+                <li><a href="@Url.Action("Contactos","Home")">Contacts</a></li>
             </ul>
         </div>
         @RenderBody()
@@ -251,7 +371,7 @@ $(document).ready(function (c) {
                 html += '<div class="cart_box" id="itemcarrito">' +
                        '    <div class="image">' +
                        '<div class="message">' +
-                       '<div class="alert-close"> </div>' +
+                       '<div class="alert-close" ></div>' +
                        '<div class="list_img"><img src="/ImgProductos/' + this.Imagen + '" class="img-responsive" alt="" /></div>' +
 
                 '           <div class="list_desc">' +
@@ -291,6 +411,7 @@ $(document).ready(function (c) {
             CargaCarrito(productos);
 
         }
+
 
     </script>
 </body>

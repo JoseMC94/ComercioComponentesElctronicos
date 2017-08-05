@@ -1539,7 +1539,7 @@ a.forgot {
 .register-but{
 	margin-top:1em;
 }
-.register-but form input[type="submit"] {
+.register-but  input[type="submit"] {
 	background:#df1f26;
 	color: #FFF;
 	font-size: 0.8em;

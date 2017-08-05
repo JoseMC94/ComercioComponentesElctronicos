@@ -68,6 +68,20 @@
         </div>
         <div class="clearfix"></div>
         <ul>
+            <div class="jumbotron" style="padding=0;">
+                <form class="form-horizontal" role="form" method="get" action="@Url.Action("Buscar","Home")">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <input type="text" name="id" id="navSearchInput" class="form-control" placeholder="Buscar en tienda ...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!-- /.row -->
+                </form>
+            </div>
 
             <h2>Resultados : " @ViewBag.clave "</h2>
             @foreach (var item in Model)
@@ -95,10 +109,10 @@
                         </div>
                     </a>
                     <div class="cbp-vm-details">
-                        <h3>@item.Descripcion</h3>
+                        <h6>@item.Descripcion</h6>
                     </div>
                     <a onclick="AgregarCarrito(@item.ProductoId,'@item.Denominacion','@img',@item.Precio)" 
-                       class="cbp-vm-icon cbp-vm-add" href="#">Al carrito</a>
+                       class="cbp-vm-icon cbp-vm-add" >Al carrito</a>
                 </li>
             }
             </ul>
